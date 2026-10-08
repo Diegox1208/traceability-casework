@@ -22,12 +22,14 @@ DROPPED = ["weight", "payer_code", "medical_specialty"]   # not needed for scree
 
 
 def load_key(env="TRACE_HMAC_KEY"):
+    """Return (key, stable). Without the variable the key is random and lives only in memory,
+    so pseudonyms cannot be linked across runs (stable = False)."""
     key = os.environ.get(env)
     if key:
-        return key.encode()
+        return key.encode(), True
     print(f"[anonymise] {env} not set: using a random key, pseudonyms will differ between runs",
           file=sys.stderr)
-    return secrets.token_bytes(32)
+    return secrets.token_bytes(32), False
 
 
 def pseudonym(key, prefix, value):

@@ -24,7 +24,7 @@ args = p.parse_args()
 #---- ##-- Map, anonymise ----
 with open(args.raw, newline="", encoding="utf-8") as fh:
     raw = list(csv.DictReader(fh))
-key = anonymise.load_key()
+key, stable_key = anonymise.load_key()
 patients, encounters = anonymise.to_model(raw, key)
 del raw                                                   # raw identifiers go no further
 qc_rows = qc.check_records(patients, encounters)          # QC on the full pseudonymised set
@@ -33,6 +33,10 @@ patients, encounters, log = anonymise.enforce_k(patients, encounters, args.k, ar
 #---- ##-- Synthetic retinal exams, QC ----
 exams, truth = retina_demo.make(patients, args.exam_patients, args.seed)
 qc_rows += qc.check_exams(exams, patients)
+if not stable_key:                                        # random key: examples would change every run
+    for r in qc_rows:
+        if r["table"] != "retinal_exams" and r["examples"]:
+            r["examples"] = "set TRACE_HMAC_KEY to list examples"
 
 tsv.write(f"{args.out_dir}/patients.tsv", patients)
 tsv.write(f"{args.out_dir}/encounters.tsv", encounters)

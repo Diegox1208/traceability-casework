@@ -31,7 +31,7 @@ report = custody.validate(units, events, temps, args.transport_min, args.transpo
                           args.storage_max, args.max_hours)
 tsv.write(f"{args.results_dir}/custody_report.tsv", report)
 tsv.write(f"{args.results_dir}/custody_summary.tsv", custody.summarise(report))
-with open(f"{args.results_dir}/custody_trace_example.txt", "w", encoding="utf-8") as fh:
+with open(f"{args.results_dir}/custody_trace_example.txt", "w", encoding="utf-8", newline="\n") as fh:
     for u in (units[0], units[6]):                     # one clean unit, one with an excursion
         fh.write(custody.trace(u["din"], units, events, temps) + "\n\n")
 
