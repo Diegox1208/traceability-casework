@@ -1,0 +1,12 @@
+metric	value
+units_checked	12
+units_traceable	5
+units_with_breaks	7
+fail_R1_identifier	1
+fail_R2_donor_link	1
+fail_R3_steps	1
+fail_R4_handoff	1
+fail_R5_transport_temp	1
+fail_R6_storage_temp	1
+fail_R7_time_to_processing	1
+fail_R8_orphan_events	1

@@ -1,0 +1,9 @@
+din	rule	fault
+Z999926000002	R1_identifier	check character mistyped on the label
+Z999926000004	R2_donor_link	consent record missing
+Z999926000005	R4_handoff	courier pick-up not signed
+Z999926000007	R5_transport_temp	transport excursion to 31.5 C
+Z999926000009	R6_storage_temp	storage reading of -120 C
+Z999926000010	R7_time_to_processing	processed 53 h after collection
+Z999926000011	R3_steps	packaging step never recorded
+Z999926999999	R8_orphan_events	event for an unregistered unit

@@ -1,0 +1,7 @@
+metric	value
+claims_logged	12
+tolerance	5%
+confirmed	9
+contradicted	1
+unconfirmable	2
+excluded_from_model	3

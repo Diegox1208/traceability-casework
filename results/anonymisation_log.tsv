@@ -1,0 +1,4 @@
+step	patients	encounters	k_min
+pseudonymised	71518	101766	1
+age generalised to 20-year bands	71518	101766	1
+classes with fewer than 5 patients suppressed	71504	101751	5

@@ -1,0 +1,16 @@
+table	rule	description	n_checked	n_failed	examples
+encounters	Q1_unique_encounter	encounter identifier is unique	101766	0	
+patients	Q2_sex_valid	sex is Female or Male	71518	3	P59541ef25d93a10b,P4d5e40389860c607,Pd8851c9cd09511a0
+patients	Q3_ethnicity_recorded	ethnicity is recorded (not '?')	71518	1948	P44633f1e6761682f,P75d678419edfe922,Pa8599e220c88ae8c
+patients	Q4_age_band_format	age band looks like [a-b)	71518	0	
+encounters	Q5_length_of_stay	time in hospital between 1 and 14 days	101766	0	
+encounters	Q6_primary_diagnosis	primary diagnosis recorded	101766	21	Eb02f22faf10e357b,E3c113942aaad0e76,E7f9d581e3a617c71
+encounters	Q7_icd9_format	recorded diagnoses are valid ICD-9 codes	101766	5567	E7f8d36e58ce43187,Eeec52a77254d3060,E50f55d84b42c25c0
+encounters	Q7b_icd9_leading_zero	invalid code is a 1-2 digit number: leading zeros lost (038 stored as 38), repairable by zero-padding	101766	5567	E7f8d36e58ce43187,Eeec52a77254d3060,E50f55d84b42c25c0
+encounters	Q8_a1c_value	HbA1c result uses the coded values	101766	0	
+encounters	Q9_patient_exists	encounter refers to a known patient	101766	0	
+retinal_exams	X1_patient_exists	exam refers to a known patient	1003	5	X00234,X00492,X00704
+retinal_exams	X2_laterality	eye is L or R	1003	4	X00549,X00883,X00927
+retinal_exams	X3_grade_vs_quality	gradable image has ICDR grade 0-4; ungradable image has no grade	1003	6	X00188,X00318,X00566
+retinal_exams	X4_referable_flag	referable flag matches grade and DME	1003	7	X00169,X00317,X00389
+retinal_exams	X5_one_exam_per_eye	one exam per patient, eye and month	1003	6	X00274,X00436,X00703

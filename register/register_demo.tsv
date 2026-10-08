@@ -1,0 +1,13 @@
+claim_id	claim	claimed_value	unit	year	source_type	source_ref	note
+C01	Population of Peru	33800000	people	2023	worldbank	SP.POP.TOTL	market base
+C02	Crude birth rate	16.0	per 1,000 people	2023	worldbank	SP.DYN.CBRT.IN	demand driver
+C03	Live births per year	540000	births	2023	derived	C01*C02/1000	addressable births
+C04	Official exchange rate	3.74	PEN per USD	2023	worldbank	PA.NUS.FCRF	price conversion
+C05	GDP per capita	7900	current USD	2023	worldbank	NY.GDP.PCAP.CD	purchasing power
+C06	Urban population	85	% of population	2023	worldbank	SP.URB.TOTL.IN.ZS	reachable population
+C07	Current health expenditure	6.1	% of GDP	2023	worldbank	SH.XPD.CHEX.GD.ZS	seeded error: the 2022 value quoted as 2023
+C08	Diabetes prevalence	6.4	% of ages 20-79	2024	worldbank	SH.STA.DIAB.ZS	screening demand
+C09	Total fertility rate	2.0	births per woman	2023	worldbank	SP.DYN.TFRT.IN	demand trend
+C10	Life expectancy at birth	77.7	years	2023	worldbank	SP.DYN.LE00.IN	context
+C11	Price of private cord-blood banking	2000	USD per unit	2026	none		illustrative figure with no public source (seeded)
+C12	Share of births in private clinics	20	% of births	2026	none		illustrative figure with no public source (seeded)

@@ -1,0 +1,4 @@
+# run time: Python >= 3.10 standard library only
+# tests
+pytest>=8
+python-stdnum>=1.20

@@ -1,0 +1,86 @@
+din	rule	status	detail
+Z999926000001	R1_identifier	pass	
+Z999926000001	R2_donor_link	pass	
+Z999926000001	R3_steps	pass	
+Z999926000001	R4_handoff	pass	
+Z999926000001	R5_transport_temp	pass	
+Z999926000001	R6_storage_temp	pass	
+Z999926000001	R7_time_to_processing	pass	
+Z999926000002	R1_identifier	fail	check character 2 != 1
+Z999926000002	R2_donor_link	pass	
+Z999926000002	R3_steps	pass	
+Z999926000002	R4_handoff	pass	
+Z999926000002	R5_transport_temp	pass	
+Z999926000002	R6_storage_temp	pass	
+Z999926000002	R7_time_to_processing	pass	
+Z999926000003	R1_identifier	pass	
+Z999926000003	R2_donor_link	pass	
+Z999926000003	R3_steps	pass	
+Z999926000003	R4_handoff	pass	
+Z999926000003	R5_transport_temp	pass	
+Z999926000003	R6_storage_temp	pass	
+Z999926000003	R7_time_to_processing	pass	
+Z999926000004	R1_identifier	pass	
+Z999926000004	R2_donor_link	fail	no consent record
+Z999926000004	R3_steps	pass	
+Z999926000004	R4_handoff	pass	
+Z999926000004	R5_transport_temp	pass	
+Z999926000004	R6_storage_temp	pass	
+Z999926000004	R7_time_to_processing	pass	
+Z999926000005	R1_identifier	pass	
+Z999926000005	R2_donor_link	pass	
+Z999926000005	R3_steps	pass	
+Z999926000005	R4_handoff	fail	courier_pickup: hand-off not signed
+Z999926000005	R5_transport_temp	pass	
+Z999926000005	R6_storage_temp	pass	
+Z999926000005	R7_time_to_processing	pass	
+Z999926000006	R1_identifier	pass	
+Z999926000006	R2_donor_link	pass	
+Z999926000006	R3_steps	pass	
+Z999926000006	R4_handoff	pass	
+Z999926000006	R5_transport_temp	pass	
+Z999926000006	R6_storage_temp	pass	
+Z999926000006	R7_time_to_processing	pass	
+Z999926000007	R1_identifier	pass	
+Z999926000007	R2_donor_link	pass	
+Z999926000007	R3_steps	pass	
+Z999926000007	R4_handoff	pass	
+Z999926000007	R5_transport_temp	fail	2026-09-27T17:47-05:00 31.5 C
+Z999926000007	R6_storage_temp	pass	
+Z999926000007	R7_time_to_processing	pass	
+Z999926000008	R1_identifier	pass	
+Z999926000008	R2_donor_link	pass	
+Z999926000008	R3_steps	pass	
+Z999926000008	R4_handoff	pass	
+Z999926000008	R5_transport_temp	pass	
+Z999926000008	R6_storage_temp	pass	
+Z999926000008	R7_time_to_processing	pass	
+Z999926000009	R1_identifier	pass	
+Z999926000009	R2_donor_link	pass	
+Z999926000009	R3_steps	pass	
+Z999926000009	R4_handoff	pass	
+Z999926000009	R5_transport_temp	pass	
+Z999926000009	R6_storage_temp	fail	2026-09-20T21:04-05:00 -120.0 C
+Z999926000009	R7_time_to_processing	pass	
+Z999926000010	R1_identifier	pass	
+Z999926000010	R2_donor_link	pass	
+Z999926000010	R3_steps	pass	
+Z999926000010	R4_handoff	pass	
+Z999926000010	R5_transport_temp	pass	
+Z999926000010	R6_storage_temp	pass	
+Z999926000010	R7_time_to_processing	fail	53.0 h > 48 h
+Z999926000011	R1_identifier	pass	
+Z999926000011	R2_donor_link	pass	
+Z999926000011	R3_steps	fail	missing packaging
+Z999926000011	R4_handoff	pass	
+Z999926000011	R5_transport_temp	pass	
+Z999926000011	R6_storage_temp	pass	
+Z999926000011	R7_time_to_processing	pass	
+Z999926000012	R1_identifier	pass	
+Z999926000012	R2_donor_link	pass	
+Z999926000012	R3_steps	pass	
+Z999926000012	R4_handoff	pass	
+Z999926000012	R5_transport_temp	pass	
+Z999926000012	R6_storage_temp	pass	
+Z999926000012	R7_time_to_processing	pass	
+Z999926999999	R8_orphan_events	fail	1 events for unregistered DIN
