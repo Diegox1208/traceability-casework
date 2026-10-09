@@ -18,12 +18,10 @@ QUASI_IDENTIFIERS = ("sex", "age_band", "ethnicity")
 ENCOUNTER_FIELDS = ["encounter_pid", "patient_pid", "admission_type_id", "time_in_hospital",
                     "num_medications", "diag_1", "diag_2", "diag_3", "a1c_result",
                     "diabetes_med", "readmitted"]
-DROPPED = ["weight", "payer_code", "medical_specialty"]   # not needed for screening
+DROPPED = ["weight", "payer_code", "medical_specialty"]
 
 
 def load_key(env="TRACE_HMAC_KEY"):
-    """Return the key and whether it is stable. Without the variable the key is random and lives only
-    in memory, so pseudonyms cannot be linked across runs and stable is False."""
     key = os.environ.get(env)
     if key:
         return key.encode(), True
@@ -37,7 +35,6 @@ def pseudonym(key, prefix, value):
 
 
 def widen_age(band, width=20):
-    """'[70-80)' -> '[60-80)' for width 20, anything unparseable is returned unchanged."""
     m = re.fullmatch(r"\[(\d+)-(\d+)\)", band)
     if not m:
         return band
@@ -51,8 +48,6 @@ def k_min(patients):
 
 
 def to_model(raw_rows, key):
-    """Raw encounter rows -> patients and encounters. Patient attributes come from the
-    patient's first encounter in file order."""
     patients, encounters = {}, []
     for r in raw_rows:
         pid = pseudonym(key, "P", r["patient_nbr"])
@@ -69,8 +64,6 @@ def to_model(raw_rows, key):
 
 
 def enforce_k(patients, encounters, k=5, width=20):
-    """Generalise age bands, then suppress patients in classes smaller than k.
-    Returns patients, encounters and the log rows."""
     log = [{"step": "pseudonymised", "patients": len(patients), "encounters": len(encounters),
             "k_min": k_min(patients)[0]}]
     patients = [dict(p, age_band=widen_age(p["age_band"], width)) for p in patients]

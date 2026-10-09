@@ -64,24 +64,30 @@ Of the three excluded, one quoted the 2022 health-expenditure value as 2023, whi
 
 The 14 suppressed patients are 0.02 % of the table. Every invalid ICD-9 code is explained by a lost leading zero, 038 stored as 38, so all are repairable.
 
-## What is real and what is synthetic
+## Data provenance
 
-- Real and public. The World Bank figures for Peru in case 2 and the UCI encounter records in case 3.
-- Synthetic. The custody records in case 1, because no public chain-of-custody data for cord blood exist, and the retinal exams in case 3, because the UCI data have no images. Both are generated from a fixed seed, and their faults are seeded on purpose.
-- Illustrative. Claims C11 and C12 in the register have no source by design.
+<table>
+<thead><tr><th>Case</th><th>Data</th><th>Provenance</th><th>Rationale</th></tr></thead>
+<tbody><tr><td>1</td><td>Cord-blood custody records</td><td>synthetic</td><td>no public chain-of-custody dataset for cord blood exists</td></tr></tbody>
+<tbody><tr><td>2</td><td>World Bank indicators for Peru</td><td>public</td><td>World Development Indicators API, CC BY 4.0</td></tr></tbody>
+<tbody><tr><td>2</td><td>Claims C11 and C12</td><td>illustrative</td><td>placeholder figures with no verifiable source, included to show that the register flags them as unconfirmable and keeps them out of use</td></tr></tbody>
+<tbody><tr><td>3</td><td>Hospital encounter records</td><td>public</td><td>UCI Diabetes 130-US Hospitals, CC BY 4.0</td></tr></tbody>
+<tbody><tr><td>3</td><td>Retinal screening exams</td><td>synthetic</td><td>the UCI dataset contains no images</td></tr></tbody>
+</table>
 
-These are demonstration numbers. They do not describe any real biobank, company or clinic.
+Synthetic records are generated from a fixed random seed, and every fault is introduced deliberately so that each validator is scored against a known ground truth. All figures are for demonstration only and do not describe any real biobank, company or clinic.
 
 ## Reproduce
 
-```bash
-python -m venv .venv && .venv/bin/pip install -r requirements.txt   # on Windows use .venv\Scripts\
-.venv/bin/python -m pytest                                         # 21 tests, under a second
-PYTHON=.venv/bin/python bash run.sh                                # whole pipeline, ~10 s
-OFFLINE=1 PYTHON=.venv/bin/python bash run.sh                      # register from cached responses
-DRY_RUN=1 bash run.sh                                              # print commands only
-export TRACE_HMAC_KEY=...                                          # stable pseudonyms across runs
-```
+<table>
+<thead><tr><th>Command</th><th>Effect</th></tr></thead>
+<tbody><tr><td><code>python -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt</code></td><td>creates the environment, with the binaries in <code>.venv\Scripts\</code> on Windows</td></tr></tbody>
+<tbody><tr><td><code>.venv/bin/python -m pytest</code></td><td>runs the 21 tests in under a second</td></tr></tbody>
+<tbody><tr><td><code>PYTHON=.venv/bin/python bash run.sh</code></td><td>runs the whole pipeline in about 10 s</td></tr></tbody>
+<tbody><tr><td><code>OFFLINE=1 PYTHON=.venv/bin/python bash run.sh</code></td><td>verifies the register against the cached responses</td></tr></tbody>
+<tbody><tr><td><code>DRY_RUN=1 bash run.sh</code></td><td>prints the commands without running them</td></tr></tbody>
+<tbody><tr><td><code>export TRACE_HMAC_KEY=...</code></td><td>keeps the pseudonyms stable across runs</td></tr></tbody>
+</table>
 
 Only the Python standard library is used at run time. `pytest` and `python-stdnum` are for the
 tests, where `python-stdnum` is an independent ISO 7064 implementation used as a cross-check.

@@ -14,7 +14,6 @@ DIN_PATTERN = re.compile(r"^[A-Z0-9]{5}[0-9]{2}[0-9]{6}$")
 
 
 def check_character(din):
-    """Return the ISO 7064 MOD 37-2 check character for a 13-character DIN."""
     total = 0
     for ch in din:
         total = ((total + ALPHABET.index(ch)) * 2) % 37
@@ -26,5 +25,4 @@ def is_well_formed(din):
 
 
 def is_valid(din, check):
-    """True when the DIN is well formed and its check character matches."""
     return is_well_formed(din) and check_character(din) == check

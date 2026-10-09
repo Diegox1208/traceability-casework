@@ -17,7 +17,7 @@ def test_demo_register_outcome():
     v = _verified()
     status = {k: r["status"] for k, r in v.items()}
     assert sum(s == "confirmed" for s in status.values()) == 9
-    assert status["C07"] == "contradicted"                 # 2022 value quoted as 2023
+    assert status["C07"] == "contradicted"
     assert status["C11"] == status["C12"] == "unconfirmable"
     assert [k for k, r in v.items() if r["used_in_model"] == "no"] == ["C07", "C11", "C12"]
 
@@ -37,7 +37,7 @@ def test_derived_value_uses_observed_inputs():
 
 def test_tolerance_changes_the_verdict():
     v = {r["claim_id"]: r for r in register.verify(tsv.read(CLAIMS), CACHE, tolerance=0.001, offline=True)}
-    assert v["C01"]["status"] == "contradicted"            # 0.13 % off fails a 0.1 % tolerance
+    assert v["C01"]["status"] == "contradicted"
 
 
 def test_missing_cache_offline_is_unconfirmable(tmp_path):

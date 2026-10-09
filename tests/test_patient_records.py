@@ -15,12 +15,11 @@ def _raw(encounter_id, patient_nbr, gender="Female", age="[70-80)", race="Caucas
 
 
 def _population():
-    """12 women aged 70-80, 6 men aged 70-80, 1 woman aged 40-50 who is unique, and faulty rows."""
     rows = [_raw(1000 + i, 500 + i) for i in range(12)]
     rows += [_raw(2000 + i, 600 + i, gender="Male") for i in range(6)]
     rows.append(_raw(3000, 700, age="[40-50)"))
     rows.append(_raw(3001, 701, gender="Unknown/Invalid", diag_1="38", race="?"))
-    rows.append(_raw(3002, 501, diag_1="?", stay="15"))          # second encounter of patient 501
+    rows.append(_raw(3002, 501, diag_1="?", stay="15"))
     return rows
 
 
@@ -41,7 +40,7 @@ def test_k_anonymity_is_enforced():
     patients, encounters = anonymise.to_model(_population(), KEY)
     kept, kept_enc, log = anonymise.enforce_k(patients, encounters, k=5)
     assert log[0]["k_min"] == 1 and log[-1]["k_min"] >= 5
-    assert len(kept) == 18                                  # the 2 unique patients are suppressed
+    assert len(kept) == 18
     assert all(e["patient_pid"] in {p["patient_pid"] for p in kept} for e in kept_enc)
 
 

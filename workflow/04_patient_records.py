@@ -26,14 +26,14 @@ with open(args.raw, newline="", encoding="utf-8") as fh:
     raw = list(csv.DictReader(fh))
 key, stable_key = anonymise.load_key()
 patients, encounters = anonymise.to_model(raw, key)
-del raw                                                   # raw identifiers go no further
-qc_rows = qc.check_records(patients, encounters)          # QC on the full pseudonymised set
+del raw
+qc_rows = qc.check_records(patients, encounters)
 patients, encounters, log = anonymise.enforce_k(patients, encounters, args.k, args.age_width)
 
 #---- ##-- Synthetic retinal exams, QC ----
 exams, truth = retina_demo.make(patients, args.exam_patients, args.seed)
 qc_rows += qc.check_exams(exams, patients)
-if not stable_key:                                        # with a random key the examples would change every run
+if not stable_key:
     for r in qc_rows:
         if r["table"] != "retinal_exams" and r["examples"]:
             r["examples"] = "set TRACE_HMAC_KEY to list examples"

@@ -18,7 +18,6 @@ API = "https://api.worldbank.org/v2/country/{country}/indicator/{code}?format=js
 
 
 def fetch_worldbank(code, year, country, cache_dir, offline=False):
-    """Return the value or None, and the provenance dict. Reads the cache first and downloads if allowed."""
     url = API.format(country=country, code=code, year=year)
     path = os.path.join(cache_dir, f"{country}_{code}_{year}.json")
     meta_path = path + ".meta.json"
@@ -43,7 +42,6 @@ def fetch_worldbank(code, year, country, cache_dir, offline=False):
 
 
 def _derive(expr, observed):
-    """Evaluate an arithmetic expression over confirmed claim ids, digits, ids and + - * / only."""
     if not re.fullmatch(r"[C0-9.+\-*/() ]+", expr):
         raise ValueError(f"unsupported expression: {expr}")
     ids = re.findall(r"C\d+", expr)
@@ -53,7 +51,6 @@ def _derive(expr, observed):
 
 
 def verify(claims, cache_dir, country="PER", tolerance=0.05, offline=False):
-    """Return the register with observed value, relative difference, status and model use."""
     observed, out = {}, []
     for c in claims:
         row = dict(c)

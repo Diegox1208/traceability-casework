@@ -60,7 +60,7 @@ def make(n_units=12, seed=2026):
         for step, hours, location, giver, receiver in plan:
             if fault == "R3_steps" and step == "packaging":
                 continue
-            signed = receiver if step == "collection" else giver     # the nurse signs the collection
+            signed = receiver if step == "collection" else giver
             if fault == "R4_handoff" and step == "courier_pickup":
                 signed = ""
             events.append({"event_id": f"EV-{len(events) + 1:04d}", "din": din, "step": step,

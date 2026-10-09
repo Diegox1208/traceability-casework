@@ -25,7 +25,7 @@ def test_broken_handoff_chain_is_caught():
     units, events, temps, _ = custody_demo.make()
     din = units[0]["din"]
     receipt = next(e for e in events if e["din"] == din and e["step"] == "lab_receipt")
-    receipt["from_custodian"] = "COURIER-99"               # someone who never held the unit
+    receipt["from_custodian"] = "COURIER-99"
     fails = _failures(custody.validate(units, events, temps))
     assert (din, "R4_handoff") in fails
 

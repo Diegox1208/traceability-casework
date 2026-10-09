@@ -6,7 +6,6 @@ from traceability import isbt128
 
 
 def test_reference_value():
-    # ICCBBA worked example "G123 498 654 321"
     assert isbt128.check_character("G123498654321") == "H"
 
 
@@ -39,5 +38,5 @@ def test_detects_adjacent_transpositions():
 
 def test_format():
     assert isbt128.is_valid("G123498654321", "H")
-    assert not isbt128.is_well_formed("G12349865432")      # 12 characters
+    assert not isbt128.is_well_formed("G12349865432")
     assert not isbt128.is_valid("G123498654321", "A")

@@ -31,7 +31,6 @@ def _ts(value):
 
 def validate(units, events, temps, transport_min=15.0, transport_max=25.0,
              storage_max=-150.0, max_hours=48.0):
-    """Return report rows with din, rule, status as pass or fail, and detail."""
     by_unit = defaultdict(list)
     for ev in events:
         by_unit[ev["din"]].append(ev)
@@ -123,7 +122,6 @@ def validate(units, events, temps, transport_min=15.0, transport_max=25.0,
 
 
 def summarise(report):
-    """Units checked, units traceable end to end, and failures per rule."""
     units = sorted({r["din"] for r in report if r["rule"] != "R8_orphan_events"})
     failing = {r["din"] for r in report if r["status"] == "fail" and r["rule"] != "R8_orphan_events"}
     rows = [{"metric": "units_checked", "value": len(units)},
@@ -136,7 +134,6 @@ def summarise(report):
 
 
 def trace(din, units, events, temps):
-    """Plain-text history of one unit with donor, every event, temperature range per phase."""
     unit = next((u for u in units if u["din"] == din), None)
     if unit is None:
         return f"{din}: not registered"

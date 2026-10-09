@@ -38,7 +38,7 @@ def make(patients, n_patients=500, seed=2026):
         for _ in range(n):
             x = exams[pool.pop()]
             if rule == "X1_patient_exists":
-                x["patient_pid"] = f"P{len(truth):016x}"        # unknown, and unique per fault
+                x["patient_pid"] = f"P{len(truth):016x}"
             elif rule == "X2_laterality":
                 x["eye"] = "B"
             elif rule == "X3_grade_vs_quality":

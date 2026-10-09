@@ -6,7 +6,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from traceability import custody, custody_demo, tsv  # noqa: E402
+from traceability import custody, custody_demo, tsv
 
 #---- ##-- Arguments ----
 p = argparse.ArgumentParser(description=__doc__)
@@ -32,7 +32,7 @@ report = custody.validate(units, events, temps, args.transport_min, args.transpo
 tsv.write(f"{args.results_dir}/custody_report.tsv", report)
 tsv.write(f"{args.results_dir}/custody_summary.tsv", custody.summarise(report))
 with open(f"{args.results_dir}/custody_trace_example.txt", "w", encoding="utf-8", newline="\n") as fh:
-    for u in (units[0], units[6]):                     # one clean unit, one with an excursion
+    for u in (units[0], units[6]):
         fh.write(custody.trace(u["din"], units, events, temps) + "\n\n")
 
 ##### Recovered faults vs seeded faults
