@@ -7,7 +7,7 @@ its provenance, check it against rules or public sources, and exclude or repair 
 Each case runs on public or clearly labelled synthetic data, and the tests check that every
 seeded fault is found and nothing else is flagged.
 
-*Diego G. Salas · 2026*
+*Diego G. Salas*
 
 ## Workflow
 

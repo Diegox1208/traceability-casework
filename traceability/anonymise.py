@@ -1,7 +1,7 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
 # Map raw encounter records (UCI "Diabetes 130-US hospitals" layout) into the patient-record
-# data model of docs/patient_data_model.md and anonymise them:
+# data model of docs/patient_data_model.md and anonymise them in three steps
 #   1. pseudonymise identifiers with HMAC-SHA256 (key kept outside the repository)
 #   2. keep only the fields the screening model needs (data minimisation)
 #   3. generalise quasi-identifiers (age band, sex, ethnicity) and suppress the patients
@@ -37,7 +37,7 @@ def pseudonym(key, prefix, value):
 
 
 def widen_age(band, width=20):
-    """'[70-80)' -> '[60-80)' for width 20; anything unparseable is returned unchanged."""
+    """'[70-80)' -> '[60-80)' for width 20, anything unparseable is returned unchanged."""
     m = re.fullmatch(r"\[(\d+)-(\d+)\)", band)
     if not m:
         return band

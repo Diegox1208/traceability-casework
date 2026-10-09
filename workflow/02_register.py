@@ -1,12 +1,12 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
-# Stage 02: verify every figure of the register against its public source.
+# Stage 02 verifies every figure of the register against its public source.
 import argparse
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from traceability import register, tsv  # noqa: E402
+from traceability import register, tsv
 
 #---- ##-- Arguments ----
 p = argparse.ArgumentParser(description=__doc__)

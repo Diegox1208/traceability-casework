@@ -1,4 +1,4 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
 # Quality-control checks on the anonymised patient-record tables.
 # Runs after pseudonymisation, so the examples in the report never show a raw identifier.

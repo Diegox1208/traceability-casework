@@ -1,4 +1,4 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
 # SYNTHETIC retinal-screening exams attached to anonymised patients.
 # The public encounter data carry no images or grades, so the exams are generated,

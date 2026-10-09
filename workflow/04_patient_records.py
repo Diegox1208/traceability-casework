@@ -1,14 +1,14 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
-# Stage 04: map public encounter records into the data model, anonymise them,
-# attach synthetic retinal exams and run the quality-control checks.
+# Stage 04 maps public encounter records into the data model, anonymises them,
+# attaches synthetic retinal exams and runs the quality-control checks.
 import argparse
 import csv
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from traceability import anonymise, qc, retina_demo, tsv  # noqa: E402
+from traceability import anonymise, qc, retina_demo, tsv
 
 #---- ##-- Arguments ----
 p = argparse.ArgumentParser(description=__doc__)
@@ -33,7 +33,7 @@ patients, encounters, log = anonymise.enforce_k(patients, encounters, args.k, ar
 #---- ##-- Synthetic retinal exams, QC ----
 exams, truth = retina_demo.make(patients, args.exam_patients, args.seed)
 qc_rows += qc.check_exams(exams, patients)
-if not stable_key:                                        # random key: examples would change every run
+if not stable_key:                                        # with a random key the examples would change every run
     for r in qc_rows:
         if r["table"] != "retinal_exams" and r["examples"]:
             r["examples"] = "set TRACE_HMAC_KEY to list examples"

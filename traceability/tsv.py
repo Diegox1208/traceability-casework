@@ -1,4 +1,4 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
 # Read and write tab-separated tables as lists of dicts (standard library only).
 import csv

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
-# Stage 03: download the UCI "Diabetes 130-US hospitals for years 1999-2008" dataset
-# (CC BY 4.0, doi:10.24432/C5230J) and check it against the recorded SHA-256.
+# Stage 03 downloads the UCI "Diabetes 130-US hospitals for years 1999-2008" dataset
+# (CC BY 4.0, DOI 10.24432/C5230J) and checks it against the recorded SHA-256.
 set -euo pipefail
 
 #---- ##-- Configuration ----

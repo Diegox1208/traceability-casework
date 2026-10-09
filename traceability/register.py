@@ -1,10 +1,10 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
-# Verification register: every figure that feeds a model is logged with its source,
+# Verification register. Every figure that feeds a model is logged with its source,
 # retrieval date and confirmation status, and only confirmed figures may be used.
 #   source_type = worldbank  -> source_ref is a World Bank indicator code (country in --country)
 #   source_type = derived    -> source_ref is an expression over other claim ids, e.g. C01*C02/1000
-#   source_type = none       -> no checkable source: the figure is unconfirmable and excluded
+#   source_type = none       -> no checkable source, so the figure is unconfirmable and excluded
 # Each API response is cached byte for byte with its SHA-256, so a later run can prove
 # which data the verdict was based on.
 import hashlib
@@ -18,7 +18,7 @@ API = "https://api.worldbank.org/v2/country/{country}/indicator/{code}?format=js
 
 
 def fetch_worldbank(code, year, country, cache_dir, offline=False):
-    """Return (value or None, provenance dict). Reads the cache first; downloads if allowed."""
+    """Return (value or None, provenance dict). Reads the cache first and downloads if allowed."""
     url = API.format(country=country, code=code, year=year)
     path = os.path.join(cache_dir, f"{country}_{code}_{year}.json")
     meta_path = path + ".meta.json"

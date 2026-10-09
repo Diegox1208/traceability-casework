@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
 # Runs the three cases end to end.
-#   bash run.sh                    -> everything; downloads the public data on first run
+#   bash run.sh                    -> everything, downloads the public data on first run
 #   OFFLINE=1 bash run.sh          -> register checked against the cached API responses only
 #   DRY_RUN=1 bash run.sh          -> print every command, run nothing
 #   PYTHON=.venv/bin/python bash run.sh

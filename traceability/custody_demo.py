@@ -1,4 +1,4 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
 # SYNTHETIC demonstration data for the chain-of-custody validator.
 # No public chain-of-custody records for cord blood exist, so the units, people and
@@ -68,7 +68,7 @@ def make(n_units=12, seed=2026):
                            "location": location, "from_custodian": giver,
                            "to_custodian": receiver, "signed_by": signed})
 
-        ##### Temperature logs: every 30 min in transport, daily for a week in storage
+        ##### Temperature logs every 30 min in transport and daily for a week in storage
         h = pickup
         while h <= receipt:
             temps.append({"din": din, "phase": "transport",

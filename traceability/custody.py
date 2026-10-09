@@ -1,7 +1,7 @@
-#### created by Diego G. Salas, 2026-10-08
+#### created by Diego G. Salas
 #
 # Chain of custody for cord-blood units, from collection to cryostorage.
-# Tables (see docs/custody_scheme.md):
+# Tables (see docs/custody_scheme.md)
 #   units.tsv            din, check, donor_id, consent_id, collection_site
 #   events.tsv           event_id, din, step, timestamp, location, from_custodian, to_custodian, signed_by
 #   temperature_log.tsv  din, phase, timestamp, temp_c
@@ -31,7 +31,7 @@ def _ts(value):
 
 def validate(units, events, temps, transport_min=15.0, transport_max=25.0,
              storage_max=-150.0, max_hours=48.0):
-    """Return report rows: din, rule, status (pass|fail), detail."""
+    """Return report rows with din, rule, status (pass|fail), detail."""
     by_unit = defaultdict(list)
     for ev in events:
         by_unit[ev["din"]].append(ev)
@@ -72,7 +72,7 @@ def validate(units, events, temps, transport_min=15.0, transport_max=25.0,
             problems.append("DIN registered more than once")
         add(din, "R2_donor_link", problems)
 
-        ##### R3 steps: once each, in order (events are already sorted by time)
+        ##### R3 steps once each, in order (events are already sorted by time)
         problems = [f"missing {s}" for s in STEPS if s not in steps]
         problems += [f"{s} recorded {steps.count(s)} times" for s in STEPS if steps.count(s) > 1]
         present = [s for s in steps if s in STEPS]
@@ -80,7 +80,7 @@ def validate(units, events, temps, transport_min=15.0, transport_max=25.0,
             problems.append("steps out of order: " + " > ".join(present))
         add(din, "R3_steps", problems)
 
-        ##### R4 hand-off: giver must be the previous receiver; changes of custody signed
+        ##### R4 hand-off, giver must be the previous receiver and changes of custody signed
         problems = []
         for prev, cur in zip(evs, evs[1:]):
             if cur["from_custodian"] != prev["to_custodian"]:
@@ -115,7 +115,7 @@ def validate(units, events, temps, transport_min=15.0, transport_max=25.0,
             problems.append("collection or processing not recorded")
         add(din, "R7_time_to_processing", problems)
 
-    ##### R8 orphan events: refer to a DIN that is not registered
+    ##### R8 orphan events refer to a DIN that is not registered
     registered = set(din_counts)
     for din in sorted(set(by_unit) - registered):
         add(din, "R8_orphan_events", [f"{len(by_unit[din])} events for unregistered DIN"])
@@ -136,7 +136,7 @@ def summarise(report):
 
 
 def trace(din, units, events, temps):
-    """Plain-text history of one unit: donor, every event, temperature range per phase."""
+    """Plain-text history of one unit with donor, every event, temperature range per phase."""
     unit = next((u for u in units if u["din"] == din), None)
     if unit is None:
         return f"{din}: not registered"
