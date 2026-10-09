@@ -1,12 +1,12 @@
-#### created by Diego G. Salas
+#### created by Diego G. Salas, 
 #
-# Stage 01 generates the synthetic cord-blood custody records and validates them.
+# Stage 01: generate the synthetic cord-blood custody records and validate them.
 import argparse
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from traceability import custody, custody_demo, tsv
+from traceability import custody, custody_demo, tsv  # noqa: E402
 
 #---- ##-- Arguments ----
 p = argparse.ArgumentParser(description=__doc__)

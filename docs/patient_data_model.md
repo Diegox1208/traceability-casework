@@ -1,4 +1,4 @@
-# Patient-record data model, anonymisation rules and QC: retinal screening
+# Patient-record data model, anonymisation rules and QC for retinal screening
 
 Designed for screening diabetic patients in a polyclinic network. Tested on the public
 UCI *Diabetes 130-US hospitals* dataset (101,766 encounters of 71,518 diabetic patients),
@@ -45,7 +45,7 @@ erDiagram
 
 | # | Rule | How |
 |---|---|---|
-| A1 | Direct identifiers never leave the intake step | `patient_nbr`, `encounter_id` replaced by HMAC-SHA256 pseudonyms (16 hex); the key comes from `TRACE_HMAC_KEY` and is never stored in the repository |
+| A1 | Direct identifiers never leave the intake step | `patient_nbr`, `encounter_id` replaced by HMAC-SHA256 pseudonyms (16 hex). The key comes from `TRACE_HMAC_KEY` and is never stored in the repository |
 | A2 | Keep only what screening needs | `weight`, `payer_code`, `medical_specialty` and the medication columns are dropped |
 | A3 | Dates coarsened | exam dates kept as year-month |
 | A4 | Quasi-identifiers generalised | age widened from 10- to 20-year bands |
@@ -68,6 +68,6 @@ erDiagram
 | Q9 | encounters | refers to a known patient |
 | X1 | retinal exams | refers to a known patient |
 | X2 | retinal exams | eye is L or R |
-| X3 | retinal exams | gradable → grade 0–4; ungradable → no grade |
+| X3 | retinal exams | gradable → grade 0–4, ungradable → no grade |
 | X4 | retinal exams | referable flag agrees with grade and DME |
 | X5 | retinal exams | one exam per patient, eye and month |
