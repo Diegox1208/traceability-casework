@@ -1,11 +1,11 @@
 #### created by Diego G. Salas
 #
-# ISBT 128 Donation Identification Number (DIN) format check and the
+# ISBT 128 Donation Identification Number, DIN, format check and the
 # ISO/IEC 7064 MOD 37-2 check character printed next to the eye-readable DIN.
 #
-# DIN (13 characters) = facility identification number (5) + year (2) + sequence (6).
-# Reference value G123498654321 -> check character H (ICCBBA worked example,
-# cross-checked in tests against python-stdnum, an independent implementation).
+# A DIN has 13 characters, a 5-character facility identification number, a 2-digit year and a 6-digit sequence.
+# Reference value G123498654321 -> check character H, the ICCBBA worked example,
+# cross-checked in tests against python-stdnum, an independent implementation.
 import re
 
 ##### Character set 0-9 -> 0-9, A-Z -> 10-35, '*' -> 36

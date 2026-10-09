@@ -1,7 +1,7 @@
 #### created by Diego G. Salas
 #
 # Chain of custody for cord-blood units, from collection to cryostorage.
-# Tables (see docs/custody_scheme.md)
+# Tables, described in docs/custody_scheme.md
 #   units.tsv            din, check, donor_id, consent_id, collection_site
 #   events.tsv           event_id, din, step, timestamp, location, from_custodian, to_custodian, signed_by
 #   temperature_log.tsv  din, phase, timestamp, temp_c
@@ -31,7 +31,7 @@ def _ts(value):
 
 def validate(units, events, temps, transport_min=15.0, transport_max=25.0,
              storage_max=-150.0, max_hours=48.0):
-    """Return report rows with din, rule, status (pass|fail), detail."""
+    """Return report rows with din, rule, status as pass or fail, and detail."""
     by_unit = defaultdict(list)
     for ev in events:
         by_unit[ev["din"]].append(ev)

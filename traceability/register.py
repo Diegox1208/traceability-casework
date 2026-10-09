@@ -2,7 +2,7 @@
 #
 # Verification register. Every figure that feeds a model is logged with its source,
 # retrieval date and confirmation status, and only confirmed figures may be used.
-#   source_type = worldbank  -> source_ref is a World Bank indicator code (country in --country)
+#   source_type = worldbank  -> source_ref is a World Bank indicator code, the country comes from --country
 #   source_type = derived    -> source_ref is an expression over other claim ids, e.g. C01*C02/1000
 #   source_type = none       -> no checkable source, so the figure is unconfirmable and excluded
 # Each API response is cached byte for byte with its SHA-256, so a later run can prove
@@ -18,7 +18,7 @@ API = "https://api.worldbank.org/v2/country/{country}/indicator/{code}?format=js
 
 
 def fetch_worldbank(code, year, country, cache_dir, offline=False):
-    """Return (value or None, provenance dict). Reads the cache first and downloads if allowed."""
+    """Return the value or None, and the provenance dict. Reads the cache first and downloads if allowed."""
     url = API.format(country=country, code=code, year=year)
     path = os.path.join(cache_dir, f"{country}_{code}_{year}.json")
     meta_path = path + ".meta.json"
@@ -43,7 +43,7 @@ def fetch_worldbank(code, year, country, cache_dir, offline=False):
 
 
 def _derive(expr, observed):
-    """Evaluate an arithmetic expression over confirmed claim ids (digits, ids and + - * / only)."""
+    """Evaluate an arithmetic expression over confirmed claim ids, digits, ids and + - * / only."""
     if not re.fullmatch(r"[C0-9.+\-*/() ]+", expr):
         raise ValueError(f"unsupported expression: {expr}")
     ids = re.findall(r"C\d+", expr)

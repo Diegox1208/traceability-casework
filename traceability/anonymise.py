@@ -1,10 +1,10 @@
 #### created by Diego G. Salas
 #
-# Map raw encounter records (UCI "Diabetes 130-US hospitals" layout) into the patient-record
+# Map raw encounter records in the UCI "Diabetes 130-US hospitals" layout into the patient-record
 # data model of docs/patient_data_model.md and anonymise them in three steps
-#   1. pseudonymise identifiers with HMAC-SHA256 (key kept outside the repository)
-#   2. keep only the fields the screening model needs (data minimisation)
-#   3. generalise quasi-identifiers (age band, sex, ethnicity) and suppress the patients
+#   1. pseudonymise identifiers with HMAC-SHA256, with the key kept outside the repository
+#   2. keep only the fields the screening model needs, data minimisation
+#   3. generalise the quasi-identifiers age band, sex and ethnicity, and suppress the patients
 #      whose combination is shared by fewer than k patients
 import hashlib
 import hmac
@@ -22,8 +22,8 @@ DROPPED = ["weight", "payer_code", "medical_specialty"]   # not needed for scree
 
 
 def load_key(env="TRACE_HMAC_KEY"):
-    """Return (key, stable). Without the variable the key is random and lives only in memory,
-    so pseudonyms cannot be linked across runs (stable = False)."""
+    """Return the key and whether it is stable. Without the variable the key is random and lives only
+    in memory, so pseudonyms cannot be linked across runs and stable is False."""
     key = os.environ.get(env)
     if key:
         return key.encode(), True
@@ -51,7 +51,7 @@ def k_min(patients):
 
 
 def to_model(raw_rows, key):
-    """Raw encounter rows -> (patients, encounters). Patient attributes come from the
+    """Raw encounter rows -> patients and encounters. Patient attributes come from the
     patient's first encounter in file order."""
     patients, encounters = {}, []
     for r in raw_rows:
@@ -70,7 +70,7 @@ def to_model(raw_rows, key):
 
 def enforce_k(patients, encounters, k=5, width=20):
     """Generalise age bands, then suppress patients in classes smaller than k.
-    Returns (patients, encounters, log rows)."""
+    Returns patients, encounters and the log rows."""
     log = [{"step": "pseudonymised", "patients": len(patients), "encounters": len(encounters),
             "k_min": k_min(patients)[0]}]
     patients = [dict(p, age_band=widen_age(p["age_band"], width)) for p in patients]

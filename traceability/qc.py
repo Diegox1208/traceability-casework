@@ -54,7 +54,7 @@ def check_records(patients, encounters):
 
 
 def referable(grade, dme):
-    """ICDR moderate or worse (grade >= 2) or diabetic macular oedema."""
+    """ICDR grade 2 or above, moderate or worse, or diabetic macular oedema."""
     return (grade != "" and int(grade) >= 2) or dme == "yes"
 
 

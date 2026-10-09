@@ -45,4 +45,4 @@ run_stage 04_patient_records "${python}" workflow/04_patient_records.py \
   --raw "${rawDir}/diabetic_data.csv" --out-dir "${outDir}" --results-dir "${resultsDir}" \
   --k "${kAnonymity}" --age-width "${ageWidth}" --exam-patients "${examPatients}" --seed "${seed}"
 
-echo "done: results in ${resultsDir}, log in ${logFile}"
+echo "done, results in ${resultsDir}, log in ${logFile}"
